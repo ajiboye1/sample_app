@@ -53,6 +53,8 @@ describe UsersController do
      response.should have_selector("a", :href => "/users?page=2", :content => "2")
      response.should have_selector("a", :href => "/users?page=2", :content => "Next")
      end
+
+    
    end
 end
 
@@ -312,6 +314,7 @@ end
         delete :destroy, :id => @user
         response.should redirect_to(users_path)
      end
+
   end
  end
 #end

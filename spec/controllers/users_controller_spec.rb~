@@ -53,6 +53,8 @@ describe UsersController do
      response.should have_selector("a", :href => "/users?page=2", :content => "2")
      response.should have_selector("a", :href => "/users?page=2", :content => "Next")
      end
+
+    
    end
 end
 
@@ -248,6 +250,7 @@ it "should change the user's attributes" do
      end
 
       describe "for non-signed-in users" do
+
       it "should deny access to 'edit'" do
         get :edit, :id => @user
         response.should redirect_to(signin_path)
@@ -310,6 +313,12 @@ end
      it "should redirect to the users page" do
         delete :destroy, :id => @user
         response.should redirect_to(users_path)
+     end
+
+     it "should not allow the admin to delete themselves" do
+       lambda do
+         delete :destroy, :id => @admin
+       end.should_not change(User, :count)
      end
   end
  end
