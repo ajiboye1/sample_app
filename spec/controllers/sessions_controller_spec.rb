@@ -46,7 +46,6 @@ describe SessionsController do
         
         it "should sign the user in" do
            post :create, :session => @attr
-           #fill in with the tests for a signed-in user
            controller.current_user.should == @user
            controller.should be_signed_in
         end
