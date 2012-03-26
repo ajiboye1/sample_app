@@ -63,20 +63,29 @@ class UsersController < ApplicationController
     end
 
     def following
-      @title = "Following"
-      @user = User.find(params[:id])
-      @users = @user.following.paginate(:page => params[:page])
-      render 'show_follow'
+       show_follow(:following)
+     # @title = "Following"
+     # @user = User.find(params[:id])
+     # @users = @user.following.paginate(:page => params[:page])
+      #render 'show_follow'
     end
 
     def followers
-      @title = "Followers"
-      @user = User.find(params[:id])
-      @users = @user.followers.paginate(:page => params[:page])
-      render 'show_follow'
+      show_follow(:followers)
+     # @title = "Followers"
+      #@user = User.find(params[:id])
+      #@users = @user.followers.paginate(:page => params[:page])
+      #render 'show_follow'
     end
-   private 
+
      
+   private 
+     def show_follow(action)
+       @title = action.to_s.capitalize
+       @user = User.find(params[:id])
+       @users = @user.send(action).paginate(:page => params[:page])
+       render 'show_follow'
+     end
     #def authenticate
       #deny_access unless signed_in?
     #end
