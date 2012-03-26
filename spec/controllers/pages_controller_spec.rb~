@@ -32,12 +32,13 @@ describe PagesController do
           Factory(:micropost, :user => @user, :content => "Foo bar #{ n + 1}")
          end
       end
-
-      it"should pluralize count" do # EXERCISE 11.5.2
+      
+      #Exercise 11.5.2
+      it"should pluralize count" do 
       get 'home'
       response.should have_selector('span', :content => "35 microposts")
       end
-      #exercise 11.4
+      #exercise 11.5.4
       it"should have pagination for microposts" do 
         get 'home'
         response.should have_selector("div.pagination")

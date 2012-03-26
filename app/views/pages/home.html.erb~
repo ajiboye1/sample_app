@@ -8,6 +8,7 @@
 </td>
 <td class="sidebar round">
 <%= render 'shared/user_info' %>
+<%= render 'shared/stats'%>
 </td>
 </tr>
 </table>
@@ -21,4 +22,5 @@ sample application.
 </p>
 
 <%= link_to "Sign up now!", signup_path, :class => "signup_button round" %>
+<%= render 'pages/landing_home' %>
 <% end %>
